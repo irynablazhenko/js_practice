@@ -26,7 +26,7 @@ if (income < 10000) {
 let netProfit = income
 netProfit *= (1 - incomeTax) //чистий дохід
 
-console.log(`базовий дохід : ${income}, відсоток податку : ${incomeTax}, дохід після вирахування податків : ${netProfit.toFixed(2)}.}`)
+console.log(`базовий дохід : ${income}, відсоток податку : ${incomeTax}, дохід після вирахування податків : ${netProfit.toFixed(2)}.`)
 
 
 
