@@ -10,23 +10,23 @@
 Якщо дохід більше 200 000, податок складає 25% від доходу.
 Вивести в консоль: базовий дохід, відсоток податку, дохід після вирахування податків.
 */
-let incomeTax    //податок на дохід
+let incomeTax = 0    //податок на дохід
 let income = 200001 //дохід
 
 if (income < 10000) {
-    incomeTax = 0.05
+    incomeTax = 5
 } else if (income >= 10000 && income <= 50000) {
-    incomeTax = 0.1
+    incomeTax = 10
 } else if (income >= 50001 && income <= 100000) {
-    incomeTax = 0.15
+    incomeTax = 15
 } else if (income >= 100001 && income <= 200000) {
-    incomeTax = 0.2
-} else incomeTax = 0.25
+    incomeTax = 20
+} else incomeTax = 25
 
 let netProfit = income
-netProfit *= (1 - incomeTax) //чистий дохід
+netProfit *= (1 - incomeTax/100) //чистий дохід
 
-console.log(`базовий дохід : ${income}, відсоток податку : ${incomeTax}, дохід після вирахування податків : ${netProfit.toFixed(2)}.`)
+console.log(`базовий дохід : ${income}, відсоток податку : ${incomeTax} %, дохід після вирахування податків : ${netProfit.toFixed(2)}.`)
 
 
 
