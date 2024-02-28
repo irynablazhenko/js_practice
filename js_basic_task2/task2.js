@@ -28,29 +28,29 @@ let totalChanges
 if (manufactureYear > 2019 && manufactureYear <= 2022) {
     tax = 0.1
     totalChanges = basePrice * tax
-    message = `\nManufacture year is : ${manufactureYear}, added ${totalChanges.toFixed(2)}$. `
+    message = `\n\tManufacture year is : ${manufactureYear}, added ${totalChanges.toFixed(2)}$. `
 }
 
 if (carMileage > 50000 && carMileage <= 100000) {
     totalChanges = basePrice * 0.05
-    message += `\nCar mileage is : ${carMileage}, subtracted ${totalChanges.toFixed(2)}$.`
+    message += `\n\tCar mileage is : ${carMileage}, subtracted ${totalChanges.toFixed(2)}$.`
     tax -= 0.05
 }
 
 if (hasClimateControl) {
     totalChanges = basePrice * 0.07
-    message += `\nCar has climate control, added ${totalChanges.toFixed(2)}$.`
+    message += `\n\tCar has climate control, added ${totalChanges.toFixed(2)}$.`
     tax += 0.07
 }
 if (isAdditionalSavePackage) {
     totalChanges = basePrice * 0.08
-    message += `\nAdditional save package is selected, added ${totalChanges.toFixed(2)}$.`
+    message += `\n\tAdditional save package is selected, added ${totalChanges.toFixed(2)}$.`
     tax += 0.08
 }
 
 if (isElectric) {
     totalChanges = basePrice * 0.15
-    message += `\nCar is electric, added ${totalChanges.toFixed(2)}$.`
+    message += `\n\tCar is electric, added ${totalChanges.toFixed(2)}$.`
     tax += 0.15
 }
 price *= (1 + tax)
