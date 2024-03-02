@@ -11,6 +11,8 @@ let resultString = ''
 for (let i = 0; i < baseString.length; i++) {
     if (baseString[i].includes(userCharacter)) {
         resultString += '*'
-    } else resultString += baseString[i]
+    } else {
+        resultString += baseString[i]
+    }
 }
 console.log(`Нова стрічка з "*" замість символа "${userCharacter}" : ${resultString}`)

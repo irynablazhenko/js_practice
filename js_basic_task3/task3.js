@@ -9,8 +9,8 @@ let firstNumber = 21
 let secondNumber = -46
 let list =[]
 
-min = Math.min(firstNumber,secondNumber)
-max = Math.max(firstNumber,secondNumber)
+let min = Math.min(firstNumber,secondNumber)
+let max = Math.max(firstNumber,secondNumber)
 
 for (let i=min+1; i<max; i++) {
     if (!(i%2)){

@@ -9,6 +9,8 @@ let resultString = ''
 for (let i = 0; i < userString.length; i++) {
     if (vowels.includes(userString[i])) {
         resultString += '*'
-    } else resultString += userString[i]
+    } else {
+        resultString += userString[i]
+    }
 }
 console.log(`Нова стрічка з "*" замість голосних : ${resultString}`)
