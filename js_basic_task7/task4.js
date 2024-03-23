@@ -25,29 +25,40 @@ const library = {
             }
         }
     },
-
     deleteBook(bookId) {
         if (this.books.some(item => item.bookId === bookId)) {
             this.books.splice(this.books.some(item => item.bookId === bookId), 1)
+            return `The book with the bookId = ${bookId} is deleted`
         } else {
             throw new Error(`There is no book with the bookId = ${bookId}`)
         }
     },
     setIsRent(bookId, isRent) {
         if (!this.books.some(item => item.bookId === bookId)) {
-            return (`The book with the bookId = ${bookId} doesn't exist`)
+            throw new Error(`The book with the bookId = ${bookId} doesn't exist`)
         } else {
-            this.books.isRent = isRent
+            for (let i = 0; i < this.books.length; i++) {
+                if (this.books[i].bookId === bookId) {
+                    this.books[i].isRent = isRent
+                    console.log(`The book with the bookId = ${bookId} set in rent`)
+                }
+            }
         }
     },
     rentBook(bookId) {
         if (!this.books.some(item => item.bookId === bookId)) {
             return (`The book with the bookId = ${bookId} doesn't exist`)
-        } else if (this.books.isRent) {
-            return (`The book with the bookId = ${bookId} is in rent`)
-        } else {
-            return (`The book with the bookId = ${bookId} can be rent`)
-        }
+        } else
+            for (let i = 0; i < this.books.length; i++) {
+                if (this.books[i].bookId === bookId) {
+                    if (this.books[i].isRent === true) {
+                        return (`The book with the bookId = ${bookId} is in rent`)
+                    }
+                    else {
+                        return (`The book with the bookId = ${bookId} can be rent`)
+                    }
+                }
+            }
     },
     printBookInfo(bookId) {
         console.log(`Book with id ${bookId}`);
@@ -58,74 +69,34 @@ const library = {
         console.log(this.books)
     }
 }
-
-
-try {
-    library.addBook(25, 'Володимир Саркісян', 2024, 0)                                 // wrong name type
-} catch (error) {
-    console.log(`Error happen: ${error.message}`)
-}
-try {
-    library.addBook('Книга Фанатка. Біполярна історія', 'Христина Морозова', 2024, 1)  // good item
-} catch (error) {
-    console.log(`Error happen: ${error.message}`)
-}
-try {
-    library.addBook('Книга Переможці', 'Бакман Фредрік', 2024, 1);                      // duplicated id
-} catch (error) {
-    console.log(`Error happen: ${error.message}`)
-}
-try {
-    library.addBook('книга 1', 23, 2024, 2)                                             // wrong author type, should be only string
-} catch (error) {
-    console.log(`Error happen: ${error.message}`)
-}
-try {
-    library.addBook('книга 2', 'автор книги 2', -5, 3)                                  // wrong year, should be greater than 0
-} catch (error) {
-    console.log(`Error happen: ${error.message}`)
-}
-try {
-    library.addBook('книга 3', 'автор книги 3', '-5', 4)                                // wrong year, should be number
-} catch (error) {
-    console.log(`Error happen: ${error.message}`)
-}
-try {
-    library.addBook('книга 4', 'автор книги 4', 5, 'dv5')                               // good item
-} catch (error) {
-    console.log(`Error happen: ${error.message}`)
-}
-try {
-    library.addBook('книга 5', 'автор книги 5', 1, 6)                                   // good item
-} catch (error) {
-    console.log(`Error happen: ${error.message}`)
+// to skip writing all times try...catch we will use function newTryCatch and method .bind to sent the arguments of inner function when calling the function newTryCatch
+function newTryCatch(func, ...args) {
+    try {
+        func(...args);
+    } catch (err) {
+        console.error('Error calling function', err.message);
+    }
 }
 
-
+newTryCatch(library.addBook.bind(library), 25, 'Володимир Саркісян', 2024, 0)                                // wrong name type
+newTryCatch(library.addBook.bind(library), 'Книга Фанатка. Біполярна історія', 'Христина Морозова', 2024, 1) // good item
+newTryCatch(library.addBook.bind(library), 'Книга Переможці', 'Бакман Фредрік', 2024, 1)                     // duplicated id
+newTryCatch(library.addBook.bind(library), 'книга 1', 23, 2024, 2)                                           // wrong author type, should be only string
+newTryCatch(library.addBook.bind(library), 'книга 2', 'автор книги 2', -5, 3)                                // wrong year, should be greater than 0
+newTryCatch(library.addBook.bind(library), 'книга 3', 'автор книги 3', '-5', 4)                              // wrong year, should be number
+newTryCatch(library.addBook.bind(library), 'книга 4', 'автор книги 4', 5, 'dv5')                             // good item
+newTryCatch(library.addBook.bind(library), 'книга 5', 'автор книги 5', 1, 6)                                 // good item
+newTryCatch(library.addBook.bind(library), 'книга 11', 'автор книги 11', 1, 11)
+newTryCatch(library.addBook.bind(library), 'книга 12', 'автор книги 12', 1, 12)
+newTryCatch(library.addBook.bind(library), 'книга 13', 'автор книги 13', 1, 13)
+newTryCatch(library.addBook.bind(library), 'книга 14', 'автор книги 14', 1, 14)
 library.printAllBooks()
-try {
-    library.deleteBook(634)
-} catch (error) {
-    console.log(`Error happen: ${error.message}`)
-}
-try {
-    library.deleteBook('dv5')
-} catch (error) {
-    console.log(`Error happen: ${error.message}`)
-}
-library.printAllBooks()
-console.log(library.rentBook(6))    // can be rent
-library.setIsRent(6, true)           // change isRent status to true
-console.log(library.rentBook(6))    // is in rent
-console.log(library.rentBook(36))   // doesn't exist
 
-// function newTry(action){
-//     try {
-//         action
-//     } catch (error) {
-//         console.log(`Error happen: ${error.message}`)
-//     }
-// }
-// newTry(library.addBook('книга 7', 23, 2024, 2))                                          // wrong author type, should be only string
-// newTry(library.addBook('книга 8', 'автор книги 8', 2024, 2))    
-// library.printAllBooks()
+newTryCatch(library.deleteBook.bind(library), 634)
+newTryCatch(library.deleteBook.bind(library), 'dv5')
+
+console.log(library.rentBook(6))                        // can be rent
+newTryCatch(library.setIsRent.bind(library), 6, true)    // change isRent status to true
+console.log(library.rentBook(6))                        // is in rent
+console.log(library.rentBook(1))                        // can be rent
+console.log(library.rentBook(36))                       // doesn't exist
