@@ -25,7 +25,7 @@ export default class Dog extends Animal {
     }
 
     printDogInfo(){
-        return `The dog name is: ${this.name}${this.__prototype__.name}, color: ${this.color}, type: ${this.type}, caught ${this.countBall}, is sterilized: ${this.isSterilized}`
+        return `The dog name is: ${this.name}, color: ${this.color}, type: ${this.type}, caught ${this.countBall}, is sterilized: ${this.isSterilized}`
     }
 
 }
