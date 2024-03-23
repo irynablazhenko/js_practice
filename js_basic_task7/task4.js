@@ -13,16 +13,40 @@
 const library = {
     books: [],
     addBook(bookName, bookAuthor, bookYear, bookId) {
-        if (this.books.some(item => item.bookId === bookId)) { // bookId can be number and string
-            console.log(`ID is duplicated. The book: ${bookName}, ${bookAuthor}, ${bookYear}, ${bookId} will be skipped`);
+        if (this.books.some(item => item.bookId === bookId)) {              // bookId can be number and string
+            throw new Error(`ID is duplicated. The book: ${bookName}, ${bookAuthor}, ${bookYear}, ${bookId} will be skipped`);
         }
         else {
-            if (typeof bookName != 'string' ||typeof bookAuthor != 'string' || typeof bookYear != 'number'
-        || bookName===''|| bookAuthor==='' || bookYear<=0 ||  bookId ===''      ) {
-                console.log(`At least one parameter is wrong. The book: ${bookName}, ${bookAuthor}, ${bookYear}, ${bookId} will be skipped`)
+            if (typeof bookName != 'string' || typeof bookAuthor != 'string' || typeof bookYear != 'number'
+                || bookName === '' || bookAuthor === '' || bookYear <= 0 || bookId === '') {
+                throw new Error(`At least one parameter is wrong. The book: [type ${typeof bookName}: ${bookName}, type ${typeof bookAuthor}: ${bookAuthor}, type ${typeof bookYear}: ${bookYear}, ${bookId}] will be skipped`)
             } else {
                 this.books.push({ bookName, bookAuthor, bookYear, bookId })
             }
+        }
+    },
+
+    deleteBook(bookId) {
+        if (this.books.some(item => item.bookId === bookId)) {
+            this.books.splice(this.books.some(item => item.bookId === bookId), 1)
+        } else {
+            throw new Error(`There is no book with the bookId = ${bookId}`)
+        }
+    },
+    setIsRent(bookId, isRent) {
+        if (!this.books.some(item => item.bookId === bookId)) {
+            return (`The book with the bookId = ${bookId} doesn't exist`)
+        } else {
+            this.books.isRent = isRent
+        }
+    },
+    rentBook(bookId) {
+        if (!this.books.some(item => item.bookId === bookId)) {
+            return (`The book with the bookId = ${bookId} doesn't exist`)
+        } else if (this.books.isRent) {
+            return (`The book with the bookId = ${bookId} is in rent`)
+        } else {
+            return (`The book with the bookId = ${bookId} can be rent`)
         }
     },
     printBookInfo(bookId) {
@@ -30,20 +54,66 @@ const library = {
         console.log(this.books.filter(item => item.bookId === bookId))
     },
     printAllBooks() {
-        console.log(`All books:`);
-        console.log(this.books);
+        console.log(`All books:`)
+        console.log(this.books)
     }
 }
 
-library.addBook(25, "Володимир Саркісян", 2024, 0);                                 // wrong name type
-library.addBook("Книга Фанатка. Біполярна історія", "Христина Морозова", 2024, 1);  // good item
-library.addBook("Книга Переможці", "Бакман Фредрік", 2024, 1);                      // duplicated id
-library.addBook("книга 1", 23, 2024, 2);                                            // wrong author type, should be only string
-library.addBook("книга 2", "автор книги 2", -5, 3);                                 // wrong year, should be greater than 0
-library.addBook("книга 3", "автор книги 3", "-5", 4);                               // good item
-library.addBook("книга 4", "автор книги 4", 5, "dv5");                              // good item
-library.addBook("книга 5", "автор книги 5", 1, 6);                                  // good item
+try {
+    library.addBook(25, 'Володимир Саркісян', 2024, 0)                                 // wrong name type
+} catch (error) {
+    console.log(`Error happen: ${error.message}`)
+}
+try {
+    library.addBook('Книга Фанатка. Біполярна історія', 'Христина Морозова', 2024, 1)  // good item
+} catch (error) {
+    console.log(`Error happen: ${error.message}`)
+}
+try {
+    library.addBook('Книга Переможці', 'Бакман Фредрік', 2024, 1);                      // duplicated id
+} catch (error) {
+    console.log(`Error happen: ${error.message}`)
+}
+try {
+    library.addBook('книга 1', 23, 2024, 2)                                             // wrong author type, should be only string
+} catch (error) {
+    console.log(`Error happen: ${error.message}`)
+}
+try {
+    library.addBook('книга 2', 'автор книги 2', -5, 3)                                  // wrong year, should be greater than 0
+} catch (error) {
+    console.log(`Error happen: ${error.message}`)
+}
+try {
+    library.addBook('книга 3', 'автор книги 3', '-5', 4)                                // wrong year, should be number
+} catch (error) {
+    console.log(`Error happen: ${error.message}`)
+}
+try {
+    library.addBook('книга 4', 'автор книги 4', 5, 'dv5')                               // good item
+} catch (error) {
+    console.log(`Error happen: ${error.message}`)
+}
+try {
+    library.addBook('книга 5', 'автор книги 5', 1, 6)                                   // good item
+} catch (error) {
+    console.log(`Error happen: ${error.message}`)
+}
 
-console.log(library.books);
-library.printBookInfo('dv5');
+
 library.printAllBooks();
+try {
+    library.deleteBook(634)
+} catch (error) {
+    console.log(`Error happen: ${error.message}`)
+}
+try {
+    library.deleteBook('dv5')
+} catch (error) {
+    console.log(`Error happen: ${error.message}`)
+}
+library.printAllBooks();
+console.log(library.rentBook(6))    // can be rent
+library.setIsRent(6, true)           // change isRent status to true
+console.log(library.rentBook(6))    // is in rent
+console.log(library.rentBook(36))   // doesn't exist
