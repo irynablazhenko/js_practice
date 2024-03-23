@@ -59,6 +59,7 @@ const library = {
     }
 }
 
+
 try {
     library.addBook(25, 'Володимир Саркісян', 2024, 0)                                 // wrong name type
 } catch (error) {
@@ -101,7 +102,7 @@ try {
 }
 
 
-library.printAllBooks();
+library.printAllBooks()
 try {
     library.deleteBook(634)
 } catch (error) {
@@ -112,8 +113,19 @@ try {
 } catch (error) {
     console.log(`Error happen: ${error.message}`)
 }
-library.printAllBooks();
+library.printAllBooks()
 console.log(library.rentBook(6))    // can be rent
 library.setIsRent(6, true)           // change isRent status to true
 console.log(library.rentBook(6))    // is in rent
 console.log(library.rentBook(36))   // doesn't exist
+
+// function newTry(action){
+//     try {
+//         action
+//     } catch (error) {
+//         console.log(`Error happen: ${error.message}`)
+//     }
+// }
+// newTry(library.addBook('книга 7', 23, 2024, 2))                                          // wrong author type, should be only string
+// newTry(library.addBook('книга 8', 'автор книги 8', 2024, 2))    
+// library.printAllBooks()
