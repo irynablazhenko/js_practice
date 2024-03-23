@@ -3,10 +3,8 @@
 //Створити дочірній клас Dog від Animal та в ньому додати 3 індивідуальні властивості для собак. І 2 індивідуальні методи.
 
 export default class Dog extends Animal {
-    constructor(name, color, type,countBall, isSterilized) {
-        super(name)
-        this.color=color
-        this.type = type
+    constructor(name, color, type, countBall, isSterilized) {
+        super(name, color, type,)
         this.countBall = countBall
         this.isSterilized = isSterilized
     }
