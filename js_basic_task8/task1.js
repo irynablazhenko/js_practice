@@ -8,10 +8,30 @@
 Створити об'єкти до Dog та Cat та попрактикуватись із методами.
 */
 import Dog from "./dog.js"
-//import Animal from "./animal.js"
+import Cat from "./cat.js"
 
-const dog1 = new Dog('Dog`s name','color','type', 5, true)
-const dog2 = new Dog( 'Keyko','pink','type2',18, false)
-const dog3 = new Dog('Snow','white','type3',2, false)
+const dog1 = new Dog('Keyko', 'pink', 'pikiness', 'long',18, true)
+const dog2 = new Dog('Snow', 'white', 'rotveller', 'long', 2, false)
 
+console.log(dog1.printDogInfo())
 console.log(dog2.printDogInfo())
+
+dog1.catchBall(25)
+dog1.coatLength = 'short'
+console.log(dog1.printDogInfo())
+console.log(`Can the dog ${dog1.name} has an offspring? ${dog1.hasOffspring()}`)
+console.log(`Can the dog ${dog2.name} has an offspring? ${dog2.hasOffspring()}`)
+
+console.log(`---------------------------------------------------------------------------`)
+
+const cat1 = new Cat('May', 'grey', 'domestic', 'Balinese',2, false)
+const cat2 = new Cat('Tom', 'red', 'wild', 'Laperm', 6, false)
+
+console.log(cat1.printCatInfo())
+console.log(cat2.printCatInfo())
+
+cat1.increaseAge(3)
+cat2.increaseAge(5)
+cat1.catchMice = 'true'
+console.log(cat1.printCatInfo())
+console.log(cat2.printCatInfo())
