@@ -1,4 +1,4 @@
- import Animal from "./animal.js"
+import Animal from './animal.js'
 
 //Створити дочірній клас Dog від Animal та в ньому додати 3 індивідуальні властивості для собак. І 2 індивідуальні методи.
 
@@ -23,8 +23,7 @@ export default class Dog extends Animal {
         }
     }
 
-    printDogInfo(){
+    printDogInfo() {
         return `The dog name is: ${this.name}, color: ${this.color}, type: ${this.type}, coat length: ${this.coatLength}, caught ${this.countBall}, is sterilized: ${this.isSterilized}`
     }
-
 }

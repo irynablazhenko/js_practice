@@ -1,4 +1,4 @@
-import Animal from "./animal.js"
+import Animal from './animal.js'
 //Створити дочірній клас Cat від Animal та в ньому додати 3 індивідуальні властивості для котів. І 2 індивідуальні методи.
 
 export default class Cat extends Animal {
@@ -13,18 +13,16 @@ export default class Cat extends Animal {
         this.yearsOld += years
         console.log(`Cat ${this.name} is ${this.yearsOld} years old`)
     }
-    
-    catchMouse(){
-        if(this.catchMice)
-        {
+
+    catchMouse() {
+        if (this.catchMice) {
             return `yes, it does`
         } else {
             return `no, it doesn't`
         }
     }
 
-    printCatInfo(){
+    printCatInfo() {
         return `The cat name is: ${this.name}, color: ${this.color}, type: ${this.type}, breed: ${this.breed}, ${this.yearsOld} years old, does it catch the mice: ${this.catchMouse()}`
     }
-
 }

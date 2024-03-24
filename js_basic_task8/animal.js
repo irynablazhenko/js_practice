@@ -1,9 +1,9 @@
 //Створити клас Animal. Додати до нього властивості color, name, type. Та методи sayHello та run. Реалізацію методів зробіть будь яку, але логічну.
 export default class Animal {
-    constructor(name,color, type) {
+    constructor(name, color, type) {
         this.color = color
         this.type = type
-        this.name = name        
+        this.name = name
     }
 
     sayHello() {
@@ -14,4 +14,3 @@ export default class Animal {
         return `I am running`
     }
 }
-

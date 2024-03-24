@@ -10,21 +10,28 @@
 import Dog from "./dog.js"
 import Cat from "./cat.js"
 
-const dog1 = new Dog('Keyko', 'pink', 'pikiness', 'long',18, true)
+const dog1 = new Dog('Keyko', 'pink', 'pikiness', 'long', 18, true)
 const dog2 = new Dog('Snow', 'white', 'rotveller', 'long', 2, false)
 
 console.log(dog1.printDogInfo())
-console.log(dog2.printDogInfo())
 
 dog1.catchBall(25)
 dog1.coatLength = 'short'
-console.log(dog1.printDogInfo())
+
 console.log(`Can the dog ${dog1.name} has an offspring? ${dog1.hasOffspring()}`)
 console.log(`Can the dog ${dog2.name} has an offspring? ${dog2.hasOffspring()}`)
+dog1.sayHello()
+dog1.run()
+dog1.color = 'black'
+dog2.sayHello()
+dog2.run()
+dog2.type = 'amstaf'
+console.log(dog1.printDogInfo())
+console.log(dog2.printDogInfo())
 
 console.log(`---------------------------------------------------------------------------`)
 
-const cat1 = new Cat('May', 'grey', 'domestic', 'Balinese',2, false)
+const cat1 = new Cat('May', 'grey', 'domestic', 'Balinese', 2, false)
 const cat2 = new Cat('Tom', 'red', 'wild', 'Laperm', 6, false)
 
 console.log(cat1.printCatInfo())
