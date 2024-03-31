@@ -6,11 +6,11 @@
 */
 import { dotCounter } from "./function.js"
 
-function fff(string, delay, callback) {
+function stringAction(string, delay, callback) {
     setTimeout(function () {
         const data = string
         callback(data)
     }, delay)
 }
 
-fff("Ingram T.N., Laforge R.W., Avila R.A. and Schwepker C.H. Jr. and Williams M.R. (2001)", 2000, dotCounter)                    
+stringAction("Ingram T.N., Laforge R.W., Avila R.A. and Schwepker C.H. Jr. and Williams M.R. (2001)", 2000, dotCounter)                    

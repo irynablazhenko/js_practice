@@ -1,0 +1,14 @@
+Завдання 1
+Напишіть 3 СSS локатора для сторінки https://en.wikipedia.org/wiki/Wikimedia_Foundation для знаходження виділених елементів:
+
+1) Заголовок сторінки (h1) : 
+h1 span
+h1#firstHeading span
+#firstHeading span
+.mw-page-title-main
+
+2) Значеня з поля Location ( One Montgomery Tower San Francisco, California, U.S.) :
+.infobox-data.label div[class=plainlist] ul
+
+3) Всі картинки, які містять артибут "srcset" :
+img[srcset]
