@@ -5,20 +5,22 @@
 Друга функція - за вашим бажанням.
 Використовуйте документацію з сайту https://jsonplaceholder.typicode.com/
 */
-const url = "https://jsonplaceholder.typicode.com/posts/"
+
 
 //функція повертає з результату запиту значення параметра body
 async function getBodyByPostId(postId) {
+    const url = "https://jsonplaceholder.typicode.com/posts/"
     const response = await fetch(url + postId)
     const result = await response.json()
     return result.body
 }
 
-getBodyByPostId(2)
+getBodyByPostId(15)
     .then(json => console.log(json))
 
 //функція створює новий пост
 async function createPost(title, body, userId) {
+    const url = "https://jsonplaceholder.typicode.com/posts/"
     const response = await fetch(url, {
         method: 'POST',
         headers: {
